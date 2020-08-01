@@ -1,7 +1,7 @@
 # CancerPrediction_Web
 Web page &amp; Server
 
-###Settings
+##Settings
 ```
 sudo apt-get install python3.6
 sudo apt install python3-venv
@@ -11,7 +11,7 @@ source [venv]/bin/activate
 pip3 install Flask
 ```
 
-###PROJECT STRUCTURE
+##PROJECT STRUCTURE
 ```
 < PROJECT ROOT >
    |
