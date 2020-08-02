@@ -44,6 +44,4 @@ $pip3 install Flask
    |-- .env                      # Inject Configuration via Environment
    |-- config.py                 # Set up the app
    |-- run.py                    
-   |
-   |-- ************************************************************************
 ```

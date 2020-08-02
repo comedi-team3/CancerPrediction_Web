@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="/static/assets/images/favicon.png" />
 
-    <title>COMEDI - {% block title %}{% endblock %} | AppSeed</title>
+    <title>COMEDI - {% block title %}{% endblock %} </title>
 
     <link rel="stylesheet" href="/static/assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="/static/assets/vendors/iconfonts/ionicons/css/ionicons.css">
@@ -28,29 +28,20 @@
 
       {% include 'side/navigation.html' %}
 
-      <!-- partial -->
       <div class="container-fluid page-body-wrapper">
 
         {% include 'side/sidebar.html' %}
 
-        <!-- partial -->
         <div class="main-panel">
-
           <div class="content-wrapper">
-
             {% block content %}{% endblock content %}
-
           </div>
-          <!-- content-wrapper ends -->
-
           {% include 'side/footer.html' %}
 
         </div>
-        <!-- main-panel ends -->
-
       </div>
-      <!-- page-body-wrapper ends -->
     </div>
+
     <!-- container-scroller -->
 
     {% include 'side/scripts.html' %}
