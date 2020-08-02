@@ -3,33 +3,42 @@ Web page &amp; Server
 
 ## Settings
 ```
-sudo apt-get install python3.6
-sudo apt install python3-venv
-cd [project name]
-python3 -m venv [venv]
-source [venv]/bin/activate
-pip3 install Flask
+$sudo apt-get install python3.6
+$sudo apt install python3-venv
+$cd [project name]
+$python3 -m venv [venv]
+$source [venv]/bin/activate
+$pip3 install Flask
 ```
 
 ## PROJECT STRUCTURE
 ```
 < PROJECT ROOT >
    |
-   |-- app/                      
-   |    |-- base/                
-   |    |-- main/                     # main page Blueprint
-   |         |-- static/
-   |         |    |-- <css, JS, images>          # CSS files, Javascripts files
-   |         |
-   |         |    |-- <css, JS, images>        
-   |         |
+   |-- app/  
+   |    |-- __init__.py             
+   |    |-- base/                                # base page for main page
+   |    |    |-- static/
+   |    |    |    |-- <css, JS, images>          # CSS files, Javascripts 
+   |    |    |
+   |    |    |-- templates/                      # Templates used to render pages
+   |    |         |
+   |    |         |-- side/                  
+   |    |         |    |-- navigation.html       
+   |    |         |    |-- sidebar.html          
+   |    |         |    |-- footer.html           
+   |    |         |    |-- scripts.html          
+   |    |         |
+   |    |         |-- layouts/                  
+   |    |              |-- base.html             
+   |    |            
+   |    |-- main/                               # main page Blueprint
    |         |-- templates/           
    |              |
    |              |-- index.html        
-   |              |-- *.html          # All other HTML pages
+   |              |-- *.html          
    |              |-- routes.py
-   |              |-- __init__.py    
-   |   __init__.py              
+   |              |-- __init__.py                
    |
    |-- requirements.txt          
    |-- .env                      # Inject Configuration via Environment
