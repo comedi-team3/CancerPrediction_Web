@@ -1,11 +1,18 @@
+from app.main import blueprint
 from flask import Blueprint, request, render_template, redirect, url_for
 from flask import current_app as current_app
-
-#index 파일에 들어갔을 때 이름 어떻게 설정할지 결정
-main = Blueprint('main',__name__,url_prefix='/')
+from jinja2 import TemplateNotFound
 
 #파일 내부에서의 경로
-@main.route('/', methods=['GET'])
-def index():
+@blueprint.route('/index')
+def main():
     return render_template('index.html')
 
+@blueprint.route('/<template>')
+def route_template(template):
+    try:
+        if not template.endswith('.html'):
+            template += '.html'
+        return render_template(template)
+    except Exception as ex:
+        print(ex)
