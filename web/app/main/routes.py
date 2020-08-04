@@ -2,11 +2,17 @@ from app.main import blueprint
 from flask import Blueprint, request, render_template, redirect, url_for
 from flask import current_app as current_app
 from jinja2 import TemplateNotFound
+from flask_mysqldb import MySQL
 
 #파일 내부에서의 경로
-@blueprint.route('/index')
-def main():
+# @blueprint.route('/index')
+# def main():
+#     return render_template('index.html')  
+
+@blueprint.route('/index',methods=['GET'])
+def index():
     return render_template('index.html')
+
 
 @blueprint.route('/<template>')
 def route_template(template):

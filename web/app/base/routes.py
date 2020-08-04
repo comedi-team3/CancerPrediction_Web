@@ -1,5 +1,4 @@
 from flask import render_template, redirect, request, url_for
-
 from app.base import blueprint
 
 @blueprint.route('/')
