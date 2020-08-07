@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
-from flask_mysqldb import MySQL
-from config import DB_CONFIG
+#from flask_mysqldb import MySQL
+#from config import DB_CONFIG
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
@@ -11,7 +11,7 @@ app = Flask(__name__)
 # app.config['MYSQL_DB'] = DB_CONFIG['database']
 
 # mysql = MySQL(app)
-
+        
 
 @app.route('/')
 def main():
@@ -55,7 +55,7 @@ def upload_file():
 
 #         cur.close()
 #     return render_template('test.html',url=url)
-        
+
 
 if __name__ == "__main__":
     try:
