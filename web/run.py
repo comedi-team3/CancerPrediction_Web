@@ -14,11 +14,24 @@ mysql = MySQL(app)
 
 @app.route('/')
 def main():
+    # cur = mysql.connection.cursor()
+    # resultValue = cur.execute("SELECT * FROM image")
+    # if resultValue > 0:
+    #     res = cur.fetchall()
+    # return render_template('index.html', resData=res)
+  
     return render_template('index.html')
 
 @app.route('/index')
 def index():
     return render_template('index.html')
+
+
+@app.route('/<template>')
+def route_template(template):
+    if not template.endswith('.html'):
+        template+='.html'
+    return render_template(template)
 
 
 @app.route('/test', methods=['GET','POST'])
