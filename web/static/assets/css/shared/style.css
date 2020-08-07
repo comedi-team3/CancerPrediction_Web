@@ -10284,7 +10284,7 @@ select.form-control {
   border-color: #ff6258; }
 
 .form-group .file-upload-default {
-  visibility: hidden;
+  /*visibility: hidden;*/
   position: absolute; }
 
 .form-group .file-upload-info {
