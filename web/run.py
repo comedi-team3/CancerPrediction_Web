@@ -21,18 +21,28 @@ def main():
     #     res = cur.fetchall()
     # return render_template('index.html', resData=res)
   
-    return render_template('index.html')
+    return render_template('/home/index.html')
 
 @app.route('/index')
 def index():
-    return render_template('index.html')
-
+    return render_template('/home/index.html')
 
 @app.route('/<template>')
 def route_template(template):
     if not template.endswith('.html'):
         template+='.html'
-    return render_template(template)
+    if "performance" in template:
+        return render_template('/home/'+template)
+    if "basic" or "buttons" or "chartjs" or "dropdowns" or "tpography" in template:
+        return render_template(template)
+
+    return render_template('/cancer_result/'+template)
+
+# @app.route('/<template>')
+# def route_template(template):
+#     if not template.endswith('.html'):
+#         template+='.html'
+#     return render_template(template)
 
 
 @app.route('/upload', methods = ['GET', 'POST'])
