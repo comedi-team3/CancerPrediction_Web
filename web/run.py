@@ -50,7 +50,7 @@ def upload_file():
    if request.method == 'POST':
       f = request.files['file']
       #저장할 경로 + 파일명
-      f.save(secure_filename(f.filename))
+      f.save('./input/'+secure_filename(f.filename))
       return 'uploads 디렉토리 -> 파일 업로드 성공!'
 
 
