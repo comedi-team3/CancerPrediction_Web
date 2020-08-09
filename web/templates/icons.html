@@ -11,7 +11,86 @@
 {% endblock stylesheets %}
 
 {% block content %}
+<div class="row page-title-header">
+    <div class="col-12">
+      <div class="page-header">
+         <h4 class="page-title">Model Performance</h4>
+         </div></div></div>
 
+<div class="col-md-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                  
+                <div class="col-md-6">
+                  <div class="d-flex align-items-center pb-2">
+                    <div class="dot-indicator bg-success mr-2"></div>
+                    <p class="mb-0">Train Accuracy</p>
+                  </div>
+                  <h4 class="font-weight-semibold">92%</h4>
+                  <div class="progress progress-md">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 92%" aria-valuenow="78" aria-valuemin="0" aria-valuemax="78"></div>
+                  </div>
+                </div>
+                
+                <div class="col-md-6 mt-4 mt-md-0">
+                  <div class="d-flex align-items-center pb-2">
+                    <div class="dot-indicator bg-success mr-2"></div>
+                    <p class="mb-0">Valid Accuracy</p>
+                  </div>
+                  <h4 class="font-weight-semibold">90.5%</h4>
+                  <div class="progress progress-md">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 90.5%" aria-valuenow="45" aria-valuemin="0" aria-valuemax="45"></div>
+                  </div>
+                </div>
+                
+                <div class="col-md-6 mt-4 mt-md-0" style = "padding: 10px;" >
+                                 <div class="d-flex align-items-center pb-2">
+                                   <div class="dot-indicator bg-success mr-2"></div>
+                                   <p class="mb-0"> Test Accuracy</p>
+                                 </div>
+                                 <h4 class="font-weight-semibold">89.6%</h4>
+                                 <div class="progress progress-md">
+                                                    <div class="progress-bar bg-success" role="progressbar" style="width: 89.6%" aria-valuenow="45" aria-valuemin="0" aria-valuemax="45"></div>
+                                 </div>
+                        </div>
+                <div class="col-md-6 mt-4 mt-md-0" style = "padding: 10px;" >
+                                                               <div class="d-flex align-items-center pb-2">
+                                                               </div>
+                                        
+                                                      </div>
+                <div class="col-md-6 mt-4 mt-md-0" style = "padding: 10px;" >
+                                                <div class="d-flex align-items-center pb-2">
+                                                  <div class="dot-indicator bg-danger mr-2"></div>
+                                                  <p class="mb-0"> Train Loss</p>
+                                                </div>
+                                                <h4 class="font-weight-semibold">2.656</h4>
+                                             
+                                       </div>
+                <div class="col-md-6 mt-4 mt-md-0" style = "padding: 10px;" >
+                                                <div class="d-flex align-items-center pb-2">
+                                                  <div class="dot-indicator bg-danger mr-2"></div>
+                                                  <p class="mb-0"> Valid Loss</p>
+                                                </div>
+                                                <h4 class="font-weight-semibold"> 2.671</h4>
+                                               
+                                       </div>
+                <div class="col-md-6 mt-4 mt-md-0" style = "padding: 10px;" >
+                                                <div class="d-flex align-items-center pb-2">
+                                                  <div class="dot-indicator bg-danger mr-2"></div>
+                                                  <p class="mb-0"> Test Loss</p>
+                                                </div>
+                                                <h4 class="font-weight-semibold">2.681</h4>
+                                       </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+<!--icon
+            
   <div class="row">
     <div class="col-lg-12 grid-margin">
       <div class="card">
@@ -1995,7 +2074,7 @@
       </div>
     </div>
   </div>
-
+-->
 {% endblock content %}
 
 <!-- Specific JS goes HERE -->
