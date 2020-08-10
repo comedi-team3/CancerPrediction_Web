@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 #from flask_mysqldb import MySQL
 #from config import DB_CONFIG
 from werkzeug.utils import secure_filename
+from model.inference import model_inference
 
 app = Flask(__name__)
 
@@ -52,6 +53,19 @@ def upload_file():
       #저장할 경로 + 파일명
       f.save('./input/'+secure_filename(f.filename))
       return 'uploads 디렉토리 -> 파일 업로드 성공!'
+      
+@app.route('/predict', methods = ['POST'])
+def predict():
+    if request.method == 'POST':
+        file = request.files('file')
+        input_file = file.read() # ex: '1_x.txt'
+        cohort, name, top_labels, top_normal, top_input = model_inference(input_file)
+        return jsonify({'cohort': cohort,
+                        'name': name,
+                        'top_genes': top_labels,
+                        'top_normal': top_normal,
+                        'top_input': top_input})
+
 
 
 # @app.route('/test', methods=['GET','POST'])
