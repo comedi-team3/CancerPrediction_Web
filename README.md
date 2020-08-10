@@ -1,32 +1,26 @@
 # CancerPrediction_Web
 Web page &amp; Server
 
-## Settings
-```
-$sudo apt-get install python3.6
-$sudo apt install python3-venv
-$cd [project name]
-$python3 -m venv [venv]
-$source [venv]/bin/activate
-$pip3 install Flask
-```
 
 ## Install
-### Start Server
+### 1. Start Server
 ```
 $ docker build -t <image name> .
 $ docker run -d -p <port number>:80 <image name>
 ```
 
-### Access Web Page
+### 2. Access Web Page
 ```
 localhost:<port number>
 ```
+
 
 ## PROJECT STRUCTURE
 ```
 < PROJECT ROOT >
    |  
+   |-- input/                     # 업로드한 파일 저장 
+   |-- model/                     # 모델
    |-- static/ 
    |    |-- <css, JS, images>  
    |         
@@ -40,8 +34,13 @@ localhost:<port number>
    |    |    |-- footer.html           
    |    |    |-- scripts.html 
    |    |    
-   |    |-- index.html                                                
+   |    |-- home/
+   |    |    |-- index.html         # main page                  
+   |    |    |-- performance.html   # model performance page                                                   
+   |    |
+   |    |-- cancer_result/       # 
    |
+   |-- Dockerfile          
    |-- requirements.txt          
    |-- .env                      # Inject Configuration via Environment
    |-- config.py                 # Set up the app
