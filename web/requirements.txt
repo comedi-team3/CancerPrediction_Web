@@ -1,3 +1,7 @@
-Flask
+torch
+torchvision
+flask
+numpy
+pandas
 flask_mysqldb
 werkzeug

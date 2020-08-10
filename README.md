@@ -11,6 +11,18 @@ $source [venv]/bin/activate
 $pip3 install Flask
 ```
 
+## Install
+### Start Server
+```
+$ docker build -t <image name> .
+$ docker run -d -p <port number>:80 <image name>
+```
+
+### Access Web Page
+```
+localhost:<port number>
+```
+
 ## PROJECT STRUCTURE
 ```
 < PROJECT ROOT >
