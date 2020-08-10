@@ -34,17 +34,13 @@ def route_template(template):
         template+='.html'
     if "performance" in template:
         return render_template('/home/'+template)
-    if "basic" or "buttons" or "chartjs" or "dropdowns" or "tpography" in template:
-        return render_template(template)
+    
+    etc = ['basic','buttons','chartjs','dropdowns','typography']
+    for tmp in etc:
+        if tmp in template:
+            return render_template(template)   
 
     return render_template('/cancer_result/'+template)
-
-# @app.route('/<template>')
-# def route_template(template):
-#     if not template.endswith('.html'):
-#         template+='.html'
-#     return render_template(template)
-
 
 @app.route('/upload', methods = ['GET', 'POST'])
 def upload_file():

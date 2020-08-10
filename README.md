@@ -3,15 +3,27 @@ Web page &amp; Server
 
 
 ## Install
-### 1. Start Server
+### Using Dockerfile
+#### 1. Start Server
 ```
 $ docker build -t <image name> .
 $ docker run -d -p <port number>:80 <image name>
 ```
 
-### 2. Access Web Page
+#### 2. Access Web Page
 ```
 localhost:<port number>
+```
+
+### Or using docker-compose
+#### 1. Start Server
+```
+$ docker-compose up
+```
+
+#### 2. Access Web Page
+```
+localhost:4000
 ```
 
 
