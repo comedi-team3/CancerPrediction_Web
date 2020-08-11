@@ -1,81 +1,306 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8"/>
-    <title>Chart.js Example</title>
-    <script src='static/chart.min.js'></script>
-  </head>
-  <body>
-    <h1>{{cohort}}</h1>
-    <h2>{{name}}</h2>
-    <!-- bar chart canvas element -->
-    <canvas id="myChart" width="600" height="400"></canvas>
-    <p id="pointSelected">Point selected:</p>
-    <script src='static/chart.min.js'>
-      // Global parameters:
-      // do not resize the chart canvas when its container does (keep at 600x400px)
-      Chart.defaults.global.responsive = false;
-      // define the chart data
-      var chartData = {
-        labels : [{% for item in labels %}
-                   "{{item}}",
-                  {% endfor %}],
-        datasets : [{
-            label: '{{ legend }}',
-            fill: true,
-            lineTension: 0.1,
-            backgroundColor: "rgba(75,192,192,0.4)",
-            borderColor: "rgba(75,192,192,1)",
-            borderCapStyle: 'butt',
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: 'miter',
-            pointBorderColor: "rgba(75,192,192,1)",
-            pointBackgroundColor: "#fff",
-            pointBorderWidth: 1,
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: "rgba(75,192,192,1)",
-            pointHoverBorderColor: "rgba(220,220,220,1)",
-            pointHoverBorderWidth: 2,
-            pointRadius: 1,
-            pointHitRadius: 10,
-            data : [{% for item in values %}
-                      {{item}},
-                    {% endfor %}],
-            spanGaps: false
-        }]
+{% extends "layouts/base.html" %}
+
+{% block title %} Model Performance {% endblock title %}
+
+
+{% block content %}
+<div class="row page-title-header">
+    <div class="col-12">
+      <div class="page-header">
+         <h4 class="page-title">Input Prediction</h4>
+         </div></div></div>
+<div>
+  <h1>{{cohort}}</h1>
+  <h2>{{name}}</h2>
+  <!-- bar chart canvas element -->
+  <!-- <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <canvas id="myChart" width="700" height="500"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+</div>
+
+<div class="row">
+  <div class="col-lg-6 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <!-- <h4 class="card-title">Basic Table</h4>
+        <p class="card-description"> Add class <code>.table</code> </p> -->
+        <canvas id="myChart" width="750" height="550"></canvas>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Hoverable Table</h4>
+        <p class="card-description"> Add class <code>.table-hover</code> </p>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>User</th>
+              <th>Product</th>
+              <th>Sale</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Jacob</td>
+              <td>Photoshop</td>
+              <td class="text-danger"> 28.76% <i class="mdi mdi-arrow-down"></i>
+              </td>
+              <td>
+                <label class="badge badge-danger">Pending</label>
+              </td>
+            </tr>
+            <tr>
+              <td>Messsy</td>
+              <td>Flash</td>
+              <td class="text-danger"> 21.06% <i class="mdi mdi-arrow-down"></i>
+              </td>
+              <td>
+                <label class="badge badge-warning">In progress</label>
+              </td>
+            </tr>
+            <tr>
+              <td>John</td>
+              <td>Premier</td>
+              <td class="text-danger"> 35.00% <i class="mdi mdi-arrow-down"></i>
+              </td>
+              <td>
+                <label class="badge badge-info">Fixed</label>
+              </td>
+            </tr>
+            <tr>
+              <td>Peter</td>
+              <td>After effects</td>
+              <td class="text-success"> 82.00% <i class="mdi mdi-arrow-up"></i>
+              </td>
+              <td>
+                <label class="badge badge-success">Completed</label>
+              </td>
+            </tr>
+            <tr>
+              <td>Dave</td>
+              <td>53275535</td>
+              <td class="text-success"> 98.05% <i class="mdi mdi-arrow-up"></i>
+              </td>
+              <td>
+                <label class="badge badge-warning">In progress</label>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Striped Table</h4>
+        <p class="card-description"> Add class <code>.table-striped</code> </p>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th> User </th>
+              <th> First name </th>
+              <th> Progress </th>
+              <th> Amount </th>
+              <th> Deadline </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="py-1">
+                <img src="/static/assets/images/faces-clipart/pic-1.png" alt="image" /> </td>
+              <td> Herman Beck </td>
+              <td>
+                <div class="progress">
+                  <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </td>
+              <td> $ 77.99 </td>
+              <td> May 15, 2015 </td>
+            </tr>
+            <tr>
+              <td class="py-1">
+                <img src="/static/assets/images/faces-clipart/pic-2.png" alt="image" /> </td>
+              <td> Messsy Adam </td>
+              <td>
+                <div class="progress">
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </td>
+              <td> $245.30 </td>
+              <td> July 1, 2015 </td>
+            </tr>
+            <tr>
+              <td class="py-1">
+                <img src="/static/assets/images/faces-clipart/pic-3.png" alt="image" /> </td>
+              <td> John Richards </td>
+              <td>
+                <div class="progress">
+                  <div class="progress-bar bg-warning" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </td>
+              <td> $138.00 </td>
+              <td> Apr 12, 2015 </td>
+            </tr>
+            <tr>
+              <td class="py-1">
+                <img src="/static/assets/images/faces-clipart/pic-4.png" alt="image" /> </td>
+              <td> Peter Meggik </td>
+              <td>
+                <div class="progress">
+                  <div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </td>
+              <td> $ 77.99 </td>
+              <td> May 15, 2015 </td>
+            </tr>
+            <tr>
+              <td class="py-1">
+                <img src="/static/assets/images/faces-clipart/pic-1.png" alt="image" /> </td>
+              <td> Edward </td>
+              <td>
+                <div class="progress">
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </td>
+              <td> $ 160.25 </td>
+              <td> May 03, 2015 </td>
+            </tr>
+            <tr>
+              <td class="py-1">
+                <img src="/static/assets/images/faces-clipart/pic-2.png" alt="image" /> </td>
+              <td> John Doe </td>
+              <td>
+                <div class="progress">
+                  <div class="progress-bar bg-info" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </td>
+              <td> $ 123.21 </td>
+              <td> April 05, 2015 </td>
+            </tr>
+            <tr>
+              <td class="py-1">
+                <img src="/static/assets/images/faces-clipart/pic-3.png" alt="image" /> </td>
+              <td> Henry Tom </td>
+              <td>
+                <div class="progress">
+                  <div class="progress-bar bg-warning" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </td>
+              <td> $ 150.00 </td>
+              <td> June 16, 2015 </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+
+{% block javascripts %}
+<script src='static/chart.min.js'></script>
+<script>
+  // Global parameters:
+  // do not resize the chart canvas when its container does (keep at 600x400px)
+  Chart.defaults.global.responsive = false;
+  // define the chart data
+  // var chartData = {
+  //   labels : [{% for item in labels %}
+  //              "{{item}}",
+  //             {% endfor %}],
+  //   data: [{
+  //     data
+  //   }]
+  //   // datasets : [{
+  //   //     label: '{{ legend }}',
+  //   //     fill: true,
+  //   //     lineTension: 0.1,
+  //   //     backgroundColor: "rgba(75,192,192,0.4)",
+  //   //     borderColor: "rgba(75,192,192,1)",
+  //   //     borderCapStyle: 'butt',
+  //   //     borderDash: [],
+  //   //     borderDashOffset: 0.0,
+  //   //     borderJoinStyle: 'miter',
+  //   //     pointBorderColor: "rgba(75,192,192,1)",
+  //   //     pointBackgroundColor: "#fff",
+  //   //     pointBorderWidth: 1,
+  //   //     pointHoverRadius: 5,
+  //   //     pointHoverBackgroundColor: "rgba(75,192,192,1)",
+  //   //     pointHoverBorderColor: "rgba(220,220,220,1)",
+  //   //     pointHoverBorderWidth: 2,
+  //   //     pointRadius: 1,
+  //   //     pointHitRadius: 10,
+  //   //     data : [{% for item in normal %}
+  //   //               {{item}},
+  //   //             {% endfor %}],
+  //   //     spanGaps: false
+  //   // }]
+  // }
+  // get chart canvas
+  var holder = document.getElementById("myChart");
+  var ctx = document.getElementById("myChart").getContext("2d");
+  // create the chart using the chart canvas
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: [{% for item in labels %}
+            "{{item}}",
+            {% endfor %}],
+      datasets: [{
+        label: 'Normal Samples',
+        data: [{% for item in normal %}
+              {{item}},
+              {% endfor %}],
+        backgroundColor: '#5c64b3',
+        borderColor: '#5c64b3',
+        order: 1
+      }, {
+        label: 'Input Sample',
+        data: [{% for item in input %}
+              {{item}},
+              {% endfor %}],
+        type: 'bar',
+        backgroundColor: '#5ac3bc',
+        borderColor: '#5ac3bc',
+        order: 2
       }
-      // get chart canvas
-      var holder = document.getElementById("myChart");
-      var ctx = document.getElementById("myChart").getContext("2d");
-      // create the chart using the chart canvas
-      var myChart = new Chart(ctx, {
-        type: 'line',
-        data: chartData,
-        options: {
-          tooltips: {
-            enabled: true,
-            mode: 'single',
-            callbacks: {
-              label: function(tooltipItems, data) {
-                       return tooltipItems.yLabel + ' degrees';
-                     }
-            }
-          },
+    ]
+    },
+    options: {
+      tooltips: {
+        enabled: true,
+        mode: 'single',
+        callbacks: {
+          label: function(tooltipItems, data) {
+                   return tooltipItems.yLabel;
+                 }
         }
-      });
-      // get the text element below the chart
-      var pointSelected = document.getElementById("pointSelected");
-      // create a callback function for updating the selected index on the chart
-      holder.onclick = function(evt){
-        var activePoint = myChart.getElementAtEvent(evt);
-        console.log(activePoint);
-        console.log('x:' + activePoint[0]._view.x);
-        console.log('maxWidth: ' + activePoint[0]._xScale.maxWidth);
-        console.log('y: ' + activePoint[0]._view.y);
-        console.log('index: ' + activePoint[0]._index);
-        pointSelected.innerHTML = 'Point selected... index: ' + activePoint[0]._index;
-      };
-    </script>
-  </body>
-</html>
+      },
+    }
+  });
+  // get the text element below the chart
+  var pointSelected = document.getElementById("pointSelected");
+  // create a callback function for updating the selected index on the chart
+  holder.onclick = function(evt){
+    var activePoint = myChart.getElementAtEvent(evt);
+    console.log(activePoint);
+    console.log('x:' + activePoint[0]._view.x);
+    console.log('maxWidth: ' + activePoint[0]._xScale.maxWidth);
+    console.log('y: ' + activePoint[0]._view.y);
+    console.log('index: ' + activePoint[0]._index);
+    pointSelected.innerHTML = 'Point selected... index: ' + activePoint[0]._index;
+  };
+</script>
+{% endblock javascripts %}
