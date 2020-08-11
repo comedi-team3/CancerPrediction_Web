@@ -11,7 +11,7 @@
     <!-- bar chart canvas element -->
     <canvas id="myChart" width="600" height="400"></canvas>
     <p id="pointSelected">Point selected:</p>
-    <script src='static/chart.min.js'>
+    <script>
       // Global parameters:
       // do not resize the chart canvas when its container does (keep at 600x400px)
       Chart.defaults.global.responsive = false;
@@ -39,7 +39,7 @@
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-            data : [{% for item in values %}
+            data : [{% for item in normal %}
                       {{item}},
                     {% endfor %}],
             spanGaps: false
