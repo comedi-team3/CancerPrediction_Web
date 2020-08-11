@@ -48,12 +48,12 @@ def upload_file():
       f = request.files['file']
       #저장할 경로 + 파일명
       f.save('./input/'+secure_filename(f.filename))
-      return 'uploads 디렉토리 -> 파일 업로드 성공!'
+      return 'input 디렉토리 -> 파일 업로드 성공!'
       
 @app.route('/predict', methods = ['POST'])
 def predict():
     if request.method == 'POST':
-        file = request.files('file')
+        file = request.files['file']
         input_file = file.read() # ex: '1_x.txt'
         cohort, name, top_labels, top_normal, top_input = model_inference(input_file)
         return jsonify({'cohort': cohort,
