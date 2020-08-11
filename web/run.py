@@ -12,7 +12,7 @@ app = Flask(__name__)
 # app.config['MYSQL_DB'] = DB_CONFIG['database']
 
 # mysql = MySQL(app)
-        
+
 
 @app.route('/')
 def main():
@@ -21,12 +21,25 @@ def main():
     # if resultValue > 0:
     #     res = cur.fetchall()
     # return render_template('index.html', resData=res)
-  
+
     return render_template('/home/index.html')
 
 @app.route('/index')
 def index():
     return render_template('/home/index.html')
+
+# @app.route('/predict', methods = ['POST'])
+# def predict():
+#     if request.method == 'POST':
+#         # file = request.files['file']
+#         #input_file = file.read(f'./input/{f.filename}}') # ex: '1_x.txt'
+#         cohort, name, top_labels, top_normal, top_input = model_inference(input_file)
+#         # return jsonify({'cohort': cohort,
+#         #                 'name': name,
+#         #                 'top_genes': top_labels,
+#         #                 'top_normal': top_normal,
+#         #                 'top_input': top_input})
+#         return render_template('/home/predict.html', cohorts = cohorts)
 
 @app.route('/<template>')
 def route_template(template):
@@ -34,11 +47,10 @@ def route_template(template):
         template+='.html'
     if "performance" in template:
         return render_template('/home/'+template)
-    
     etc = ['basic','buttons','chartjs','dropdowns','typography']
     for tmp in etc:
         if tmp in template:
-            return render_template(template)   
+            return render_template(template)
 
     return render_template('/cancer_result/'+template)
 
@@ -48,20 +60,9 @@ def upload_file():
       f = request.files['file']
       #저장할 경로 + 파일명
       f.save('./input/'+secure_filename(f.filename))
-      return 'input 디렉토리 -> 파일 업로드 성공!'
-      
-@app.route('/predict', methods = ['POST'])
-def predict():
-    if request.method == 'POST':
-        file = request.files['file']
-        input_file = file.read() # ex: '1_x.txt'
-        cohort, name, top_labels, top_normal, top_input = model_inference(input_file)
-        return jsonify({'cohort': cohort,
-                        'name': name,
-                        'top_genes': top_labels,
-                        'top_normal': top_normal,
-                        'top_input': top_input})
-
+      cohort, name, top_labels, top_normal, top_input = model_inference(f.filename)
+      return render_template('/home/predict.html', cohort=cohort, name=name,
+                            labels=top_labels, normal=top_normal, input=top_input)
 
 
 # @app.route('/test', methods=['GET','POST'])
